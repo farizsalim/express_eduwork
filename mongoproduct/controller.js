@@ -35,8 +35,17 @@ const addProduct = (req, res) => {
         .catch(error => res.status(500).send(error));
 };
 
+const deleteProduct = (req, res) => {
+    const { id } = req.params;
+
+    db.collection('product').findOneAndDelete({ _id: new ObjectId(id) })
+        .then(result => res.send(result))
+        .catch(error => res.status(500).send(error));
+};
+
 module.exports = {
     index,
     view,
-    addProduct
+    addProduct,
+    deleteProduct
 }

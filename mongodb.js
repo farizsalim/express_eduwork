@@ -4,7 +4,9 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const pass= process.env.MONGOPASS
-const url = `mongodb+srv://adaw2216:${pass}@cluster0.q96ymty.mongodb.net/`
+const account = process.env.MONGOACCOUNT
+const cluster = process.env.MONGOCLUSTER 
+const url = `mongodb+srv://${account}:${pass}${cluster}`
 const client = new MongoClient(url);
 
 (async () => {
