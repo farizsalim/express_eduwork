@@ -30,7 +30,6 @@ const addProduct = (req, res) => {
         status
     };
 
-    // Tambahkan produk ke koleksi 'product'
     db.collection('product').insertOne(newProduct)
         .then(result => res.send(result))
         .catch(error => res.status(500).send(error));
