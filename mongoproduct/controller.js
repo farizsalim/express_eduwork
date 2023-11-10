@@ -2,7 +2,7 @@ const { ObjectId } = require('bson')
 const db = require('../mongodb')
 
 const index = (req,res) => {
-    db.collection('product').find()
+    db.collection('products').find()
     .toArray()
     .then(result => res.send(result))
     .catch(error => res.send(error))
@@ -10,7 +10,7 @@ const index = (req,res) => {
 
 const view = (req,res) => {
     const {id} = req.params
-    db.collection('product').findOneAndDelete({_id: new ObjectId(id)})
+    db.collection('products').findOneAndDelete({_id: new ObjectId(id)})
     .then(result => res.send(result))
     .catch(error => res.send(error))
 }
@@ -30,7 +30,7 @@ const addProduct = (req, res) => {
         status
     };
 
-    db.collection('product').insertOne(newProduct)
+    db.collection('products').insertOne(newProduct)
         .then(result => res.send(result))
         .catch(error => res.status(500).send(error));
 };
@@ -38,7 +38,7 @@ const addProduct = (req, res) => {
 const deleteProduct = (req, res) => {
     const { id } = req.params;
 
-    db.collection('product').findOneAndDelete({ _id: new ObjectId(id) })
+    db.collection('products').findOneAndDelete({ _id: new ObjectId(id) })
         .then(result => res.send(result))
         .catch(error => res.status(500).send(error));
 };
